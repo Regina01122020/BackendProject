@@ -3,11 +3,30 @@ var Schema = mongoose.Schema;
 
 userSchema = new Schema( {
 	
-	unique_id: Number,
-	email: String,
-	username: String,
-	password: String,
-	passwordConfirm: String
+	unique_id: {
+		type: Number,
+		required: true
+	},
+
+	email: {
+		type: String,
+		required: true
+	},
+
+	username: {
+		type: String,
+		required: true
+	},
+
+	password: {
+		type: String,
+		required: true
+	},
+
+	passwordConfirm: {
+		type: String,
+		required: true
+	}
 }),
 
 User = mongoose.model('User', userSchema);
