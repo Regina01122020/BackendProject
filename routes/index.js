@@ -19,18 +19,18 @@ router.post('/', (req, res, next) => {
 
 			User.findOne({ email: personInfo.email }, (err, data) => {
 				if (!data) {
-					var c;
+					var count;
 					User.findOne({}, (err, data) => {
 
 						if (data) {
 							console.log("if");
-							c = data.unique_id + 1;
+							count = data.unique_id + 1;
 						} else {
-							c = 1;
+							count = 1;
 						}
 
 						var newPerson = new User({
-							unique_id: c,
+							unique_id: count,
 							email: personInfo.email,
 							username: personInfo.username,
 							password: personInfo.password,
@@ -86,7 +86,7 @@ router.get('/profile', (req, res, next) => {
 		if (!data) {
 			res.redirect('/');
 		} else {
-			return res.render('data.ejs', { "name": data.username, "email": data.email });
+			return res.render('data.ejs', { "name": data.username});
 		}
 	});
 });
@@ -103,35 +103,6 @@ router.get('/logout', (req, res, next) => {
 			}
 		});
 	}
-});
-
-router.get('/forgetpass', (req, res, next) => {
-	res.render("form.ejs");
-});
-
-router.post('/forgetpass', (req, res, next) => {
-	User.findOne({ email: req.body.email }, (err, data) => {
-		console.log(data);
-		if (!data) {
-			res.send({ "Success": "This Email Is not registered!" });
-		} else {
-			if (req.body.password == req.body.passwordConfirm) {
-				data.password = req.body.password;
-				data.passwordConfirm = req.body.passwordConfirm;
-
-				data.save((err, Person) => {
-					if (err)
-						console.log(err);
-					else
-						console.log('Success');
-					res.send({ "Success": "Password changed!" });
-				});
-			} else {
-				res.send({ "Success": "Password does not matched! Both Password should be the same." });
-			}
-		}
-	});
-
 });
 
 module.exports = router;
