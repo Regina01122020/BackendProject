@@ -3,8 +3,7 @@
 <head>
 	<title>Login</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="./css/main.css">
 
@@ -22,15 +21,7 @@
 					success: (response) => {
 						$('#form')[0].reset();
 
-						document.getElementById("check").innerHTML=response.Success;
-         					setTimeout( () => {
-         						document.getElementById("check").innerHTML="";
-         					},3000);
-         					if (response.Success=="Success!") {
-         						document.getElementById("aa").click();
-         					};
-         				},
-         				error: () => {
+						document.getElementById("aa").click();
          				}
          			})
 			});
@@ -39,7 +30,7 @@
 	</script>
 </head>
 <body>
-	<div class="col-md-4 col-md-offset-4">
+	<div id="div1">
 		<div>
 			<p>Login</p>
 		</div>
@@ -54,9 +45,6 @@
 			<span id="check" ></span>
 		</div>
 		<div id="LangTable"><a href="/profile" id="aa"></a>
-		</div>
-		<div><span>Forgot password?</span><a href="/forgetpass">click here</a>
-		</div>
 	</div>
 </body>
 </html>
